@@ -1,3 +1,10 @@
+<?php
+    
+    $naam       =   "Niels";
+    $achternaam =   "van Nimmen";
+
+?>
+
 <!doctype html>
 <html>
     <head>
@@ -8,7 +15,9 @@
 
     <body>
 
-        <p><?php echo Niels van Nimmen ?></p>
+        <p><?php echo $naam ?></p>
+
+        <p><?php echo $achternaam ?></p>
     
     </body>
 </html>
