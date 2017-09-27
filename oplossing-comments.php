@@ -1,5 +1,10 @@
 <?php
     
+    /*
+    Niels van Nimmen
+    niels.vannimmen@student.kdg.be
+    */
+
     $naam       =   "Niels";
     $achternaam =   "van Nimmen";
 
