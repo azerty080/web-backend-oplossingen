@@ -1,26 +1,19 @@
 <?php
     
-    $jaartal = 2017;
+    $seconden = 221108521;
 
-    if ($jaartal % 4 == 0)
-    {
-        $mededeling = 'Dit is een schrikkeljaar';
-    }
-    elseif ($jaartal % 100 == 0)
-    {
-        if ($jaartal % 400 == 0)
-        {
-            $mededeling = 'Dit is een schrikkeljaar';
-        }
-        else
-        {
-            $mededeling = 'Dit is geen schrikkeljaar';
-        }
-    }
-    else
-    {
-        $mededeling = 'Dit is geen schrikkeljaar';
-    }
+    $minuten = $seconden / 60;
+
+    $uren = $minuten / 60;
+
+    $dagen = $uren / 24;
+
+    $weken = $dagen / 7;
+
+    $maanden = $dagen / 31;
+
+    $jaren = $maanden / 12;
+
     
 ?>
 
@@ -38,9 +31,20 @@
         
         <section class="body">
 
-            <h1>Deel1</h1>
-            <p><?php echo $jaartal ?></p>
-            <p><?php echo $mededeling ?></p>
+            <h1>Deel 2</h1>
+
+            <h1>Jaren, maanden, weken, dagen, uren, minuten en seconden</h1>
+
+            <p>in <?php echo $seconden ?> seconden</p>
+
+            <ul>
+                <li>minuten: <?php echo $minuten ?></li>
+                <li>uren: <?php echo $uren ?></li>
+                <li>dagen: <?php echo $dagen ?></li>
+                <li>weken: <?php echo $weken ?></li>
+                <li>maanden (31): <?php echo $maanden ?></li>
+                <li>jaren (365): <?php echo $jaren ?></li>
+            </ul>
 
         </section>
 
