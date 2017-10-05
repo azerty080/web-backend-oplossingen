@@ -2,18 +2,13 @@
 
     $dieren = array('hond', 'kat', 'vogel', 'hamster', 'olifant');
 
-    $aantalElementen = count($dieren);
 
-    $teZoekenDier = 'hond';
+    sort($dieren);
 
-    if(in_array($teZoekenDier, $dieren) == true)
-    {
-        $message = "Gevonden";
-    }
-    else
-    {
-        $message = "Niet gevonden";
-    }
+
+    $zoogdieren = array('paard', 'dolfijn', 'schaap');
+
+    $dierenLijst = array_merge($dieren, $zoogdieren);
 
 ?>
 
@@ -33,16 +28,8 @@
 
             <h1>Deel 2</h1>
 
-            <p><?php echo $aantalElementen ?></p>
-            <p><?php echo $message ?></p>
-
-
-
-                <li>Ga verder op deel 1 (maar maak een aparte kopie voor, overschrijf het origineel niet!)</li>
-
-                <li>Zorg ervoor dat de array volgens het alfabet gesorteerd wordt ( A -> Z )</li>
-
-                <li>Maak een array <code>$zoogdieren</code> en plaats hier 3 dieren in, voeg vervolgens de 2 arrays met dieren samen in de array <code>$dierenLijst</code></li>
+            <pre><?php echo var_dump($dieren) ?></pre>
+            <pre><?php echo var_dump($dierenLijst) ?></pre>
 
         </section>
 
