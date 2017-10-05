@@ -6,37 +6,43 @@
 	{
 		$dag = 'maandag';
 	}
-
+	
 	if ($getal == 2)
 	{
 		$dag = 'dinsdag';
 	}
-
+	
 	if ($getal == 3)
 	{
 		$dag = 'woensdag';
 	}
-
+	
 	if ($getal == 4)
 	{
 		$dag = 'donderdag';
 	}
-
+	
 	if ($getal == 5)
 	{
 		$dag = 'vrijdag';
 	}
-
+	
 	if ($getal == 6)
 	{
 		$dag = 'zaterdag';
 	}
-
+	
 	if ($getal == 7)
 	{
 		$dag = 'zondag';
 	}
 	
+	$dagUpper = strtoupper($dag);
+	$posLaatsteA = strrpos($dagUpper, 'A');
+
+	$dagLowerA = str_replace('A', 'a', $dagUpper);
+	$dagLowerLastA = substr_replace($dagUpper, 'a', $posLaatsteA, 1);
+
 ?>
 
 <!doctype html>
@@ -53,8 +59,10 @@
         
         <section class="body">
         
-            <h1>Deel 1</h1>
-            <p><?php echo $dag ?></p>
+            <h1>Deel 2</h1>
+            <p><?php echo $dagUpper ?></p>
+            <p><?php echo $dagLowerA ?></p>
+            <p><?php echo $dagLowerLastA ?></p>
 
         </section>
 
