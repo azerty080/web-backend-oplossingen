@@ -6,7 +6,12 @@
     {
         $mededeling = 'Dit is een schrikkeljaar';
     }
-    elseif ($jaartal % 100 == 0)
+    else
+    {
+        $mededeling = 'Dit is geen schrikkeljaar';
+    }
+
+    if ($jaartal % 100 == 0)
     {
         if ($jaartal % 400 == 0)
         {
@@ -19,7 +24,7 @@
     }
     else
     {
-        $mededeling = 'Dit is geen schrikkeljaar';
+        $mededeling = "Dit is geen schrikkeljaar"
     }
     
 ?>
