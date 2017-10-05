@@ -1,5 +1,20 @@
 <?php
 
+    $dieren1 = array('hond', 'kat', 'hamster', 'vogel', 'olifant', 'leeuw', 'giraf', 'aap', 'vis', 'muis' );
+
+    $dieren2[] = 'hond';
+    $dieren2[] = 'kat';
+    $dieren2[] = 'hamster';
+    $dieren2[] = 'vogel';
+    $dieren2[] = 'olifant';
+    $dieren2[] = 'leeuw';
+    $dieren2[] = 'giraf';
+    $dieren2[] = 'aap';
+    $dieren2[] = 'vis';
+    $dieren2[] = 'muis';
+
+
+    $voertuigen = array('landvoertuigen' => array('vespa', 'fiets'), 'watervoertuigen' => array('surfplank', 'vlot', 'schoener', 'driemaster'), 'luchtvoertuigen' => array('luchtballon', 'helicopter', 'B52'));
 
 ?>
 
@@ -18,7 +33,7 @@
         <section class="body">
         
             <h1>Deel 1</h1>
-            
+            <pre><?php echo var_dump($voertuigen) ?></pre>
         
         </section>
 
