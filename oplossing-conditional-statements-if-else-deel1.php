@@ -1,6 +1,26 @@
 <?php
     
-    
+    $jaartal = 2017;
+
+    if ($jaartal % 4 == 0)
+    {
+        $mededeling = 'Dit is een schrikkeljaar';
+    }
+    elseif ($jaartal % 100 == 0)
+    {
+        if ($jaartal % 400 == 0)
+        {
+            $mededeling = 'Dit is een schrikkeljaar';
+        }
+        else
+        {
+            $mededeling = 'Dit is geen schrikkeljaar';
+        }
+    }
+    else
+    {
+        $mededeling = 'Dit is geen schrikkeljaar';
+    }
     
 ?>
 
@@ -19,7 +39,8 @@
         <section class="body">
 
             <h1>Deel1</h1>
-            <p><?php  ?></p>
+            <p><?php echo $jaartal ?></p>
+            <p><?php echo $mededeling ?></p>
 
         </section>
 
