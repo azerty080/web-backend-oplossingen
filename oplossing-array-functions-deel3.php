@@ -1,14 +1,10 @@
 <?php
 
-    $dieren = array('hond', 'kat', 'vogel', 'hamster', 'olifant');
+    $getallen = array('8', '7', '8', '7', '3', '2', '1', '2', '4');
 
+    $getallenUniek = array_unique($getallen);
 
-    sort($dieren);
-
-
-    $zoogdieren = array('paard', 'dolfijn', 'schaap');
-
-    $dierenLijst = array_merge($dieren, $zoogdieren);
+    rsort($getallenUniek);
 
 ?>
 
@@ -26,10 +22,8 @@
         
         <section class="body">
 
-            <h1>Deel 2</h1>
-
-            <pre><?php echo var_dump($dieren) ?></pre>
-            <pre><?php echo var_dump($dierenLijst) ?></pre>
+            <h1>Deel 3</h1>
+            <pre><?php echo var_dump($getallenUniek) ?></pre>
 
         </section>
 
