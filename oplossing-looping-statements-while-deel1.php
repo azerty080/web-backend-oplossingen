@@ -1,6 +1,9 @@
 <?php
-
+    
+    $getal1 = 0;
     $space = ' ,';
+
+    $getal2 = 0;
 
 ?>
 
@@ -19,17 +22,26 @@
         <section class="body">  
         
         <h1>Deel 1</h1>
-
-
-
-
-
-            <li>Druk alle getallen af van 0 tot 100 afgescheiden door een komma en 
-            een spatie ' , '.</li>
-
-            <li>Op een volgende lijn druk je alle getallen af die deelbaar zijn door 3 én groter zijn dan 40 mààr kleiner zijn dan 80.</li>
-
-
+        <p>
+        <?php
+            while ($getal1 < 100)
+            {
+                echo $getal1, $space;
+                $getal1++;
+            }
+        ?>   
+        </p>
+        <p>
+        <?php
+            while ($getal2 < 80)
+            {
+                if ($getal2 % 3 == 0 && $getal2 > 40) {
+                    echo $getal2, $space;
+                }
+                $getal2++;
+            }
+        ?>
+        </p>
 
     </body>
 </html>
