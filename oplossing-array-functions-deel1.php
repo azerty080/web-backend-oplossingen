@@ -1,5 +1,19 @@
 <?php
 
+    $dieren = array('hond', 'kat', 'vogel', 'hamster', 'olifant');
+
+    $aantalElementen = count($dieren);
+
+    $teZoekenDier = 'hond';
+
+    if(in_array($teZoekenDier, $dieren) == true)
+    {
+        $message = "Gevonden";
+    }
+    else
+    {
+        $message = "Niet gevonden";
+    }
 
 ?>
 
@@ -17,20 +31,10 @@
         
         <section class="body">
 
-
-
-            
             <h1>Deel 1</h1>
 
-            <ul>
-                <li>Maak een array waarin je meer dan 5 dieren plaatst</li>
-
-                <li>Laat het script berekenen hoeveel elementen er in de array zitten en druk af naar het scherm</li>
-
-                <li>Maak het mogelijk om met een variabele <code>$teZoekenDier</code> een dier te zoeken in de array, druk tevens een gepaste boodschap af (gevonden/niet gevonden).</li>
-
-            </ul> 
-
+            <p><?php echo $aantalElementen ?></p>
+            <p><?php echo $message ?></p>
 
         </section>
 
