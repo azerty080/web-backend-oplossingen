@@ -3,6 +3,18 @@
     $rijen = 10;
     $kolommen = 10;
 
+    for ($i=0; $i <= $rijen; $i++)
+    { 
+        $kolommenArray = array();
+
+        for ($j=0; $j <= $kolommen; $j++)
+        { 
+            $kolommenArray[] = $i * $j;
+        }
+
+        $rijenArray[ $i ] = $kolommenArray;
+    }
+
 ?>
 
 <!doctype html>
@@ -30,14 +42,12 @@
 
             <table>
                 <?php
-                    for ($i=0; $i <= $rijen ; $i++)
-                    { 
-                        $tafel = $i;
+                    foreach ($rijenArray as $kolommenArray)
+                    {
                         echo '<tr>';
-                        for ($j=0; $j < $kolommen ; $j++)
-                        { 
-                            echo '<td class=' . (($tafel % 2 == 0 ) ? '' : 'oneven') . '>' . $tafel . '</td>';
-                            $tafel += $i;
+                        foreach ($kolommenArray as $kolom)
+                        {
+                            echo '<td class=' . (($kolom % 2 == 0 ) ? '' : 'oneven') . '>' . $kolom . '</td>';
                         }
                         echo '</tr>';
                     }
