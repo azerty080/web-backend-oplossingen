@@ -19,27 +19,25 @@
         
         <section class="body">
 
+        <style>
+            .oneven
+            {
+                background-color    :   lightgreen;
+            }
+        </style>
+
             <h1>Deel 2</h1>
 
             <table>
                 <?php
-                    for ($i=0; $i < $rijen ; $i++)
+                    for ($i=0; $i <= $rijen ; $i++)
                     { 
-                        echo '<tr>';
-                        echo '<td>rij</td>';
-                        echo '</tr>';
-                    }
-                ?>
-            </table>
-
-            <table>
-                <?php
-                    for ($i=0; $i < $rijen ; $i++)
-                    { 
+                        $tafel = $i;
                         echo '<tr>';
                         for ($j=0; $j < $kolommen ; $j++)
                         { 
-                            echo '<td>kolom</td>';
+                            echo '<td class=' . (($tafel % 2 == 0 ) ? '' : 'oneven') . '>' . $tafel . '</td>';
+                            $tafel += $i;
                         }
                         echo '</tr>';
                     }
