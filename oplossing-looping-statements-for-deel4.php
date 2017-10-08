@@ -7,7 +7,7 @@
     { 
         $kolommenArray = array();
 
-        for ($j=0; $j <= $kolommen; $j++)
+        for ($j=1; $j <= $kolommen; $j++)
         { 
             $kolommenArray[] = $i * $j;
         }
