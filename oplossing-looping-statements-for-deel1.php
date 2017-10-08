@@ -1,6 +1,7 @@
 <?php
 
-    
+    $rijen = 10;
+    $kolommen = 10;
 
 ?>
 
@@ -20,7 +21,30 @@
 
             <h1>Deel 1</h1>
 
-            
+            <table>
+                <?php
+                    for ($i=0; $i < $rijen ; $i++)
+                    { 
+                        echo '<tr>';
+                        echo '<td>rij</td>';
+                        echo '</tr>';
+                    }
+                ?>
+            </table>
+
+            <table>
+                <?php
+                    for ($i=0; $i < $rijen ; $i++)
+                    { 
+                        echo '<tr>';
+                        for ($j=0; $j < $kolommen ; $j++)
+                        { 
+                            echo '<td>kolom</td>';
+                        }
+                        echo '</tr>';
+                    }
+                ?>
+            </table>
 
         </section>
 
