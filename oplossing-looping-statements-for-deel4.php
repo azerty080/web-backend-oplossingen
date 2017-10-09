@@ -2,6 +2,7 @@
 
     $rijen = 10;
     $kolommen = 10;
+    $counter = 0;
 
     for ($i=0; $i <= $rijen; $i++)
     { 
@@ -42,15 +43,28 @@
 
             <table>
                 <?php
+                    echo '<thead>';
+                    echo '<th>Tafel</th>';
+                    for ($k=0; $k <= $rijen; $k++)
+                    { 
+                        echo '<th>' . $k . '</th>';
+                    }
+                    echo '</thead>';
+
+                    echo '<tbody>';
                     foreach ($rijenArray as $kolommenArray)
                     {
                         echo '<tr>';
+                        echo '<td>' . $counter . '</td>';
+                        echo '<td>0</td>';
                         foreach ($kolommenArray as $kolom)
                         {
                             echo '<td class=' . (($kolom % 2 == 0 ) ? '' : 'oneven') . '>' . $kolom . '</td>';
                         }
                         echo '</tr>';
+                        $counter++;
                     }
+                    echo '</tbody>';
                 ?>
             </table>
 
