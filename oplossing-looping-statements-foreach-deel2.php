@@ -2,27 +2,31 @@
 
     $tekst = file_get_contents('D:\Documents\School\3de jaar\Back End\cursus\public\cursus\opdrachten\opdracht-looping-statements-foreach\text-file.txt');
 
+    $alfabet = array('a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z');
+
     $tekstChars = str_split($tekst, 1);
 
     rsort($tekstChars);
 
     $tekstChars = array_reverse($tekstChars);
 
-    $amountOfDifferentChars = 0;
     $charCount = array();
 
     foreach ($tekstChars as $value)
     {
-        if (isset($charCount[ $value ]) == True)
+        if (in_array(strtolower($value), $alfabet) == True)
         {
-            $charCount[ $value ]++;
-        }
-        else
-        {
-            $charCount[ $value ] = 1;
-            $amountOfDifferentChars++;
+            if (isset($charCount[ $value ]) == True)
+            {
+                $charCount[ $value ]++;
+            }
+            else
+            {
+                $charCount[ $value ] = 1;
+            }
         }
     }
+
 ?>
 
 <!doctype html>
@@ -44,7 +48,6 @@
             <pre>
             <?php
                 echo var_dump($charCount);
-                echo $amountOfDifferentChars;
             ?>
             </pre>
 
