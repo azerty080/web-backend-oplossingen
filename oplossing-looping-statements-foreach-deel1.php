@@ -2,6 +2,27 @@
 
     $tekst = file_get_contents('D:\Documents\School\3de jaar\Back End\cursus\public\cursus\opdrachten\opdracht-looping-statements-foreach\text-file.txt');
 
+    $tekstChars = str_split($tekst, 1);
+
+    rsort($tekstChars);
+
+    $tekstChars = array_reverse($tekstChars);
+
+    $amountOfDifferentChars = 0;
+    $charCount = array();
+
+    foreach ($tekstChars as $value)
+    {
+        if (isset($charCount[ $value ]) == True)
+        {
+            $charCount[ $value ]++;
+        }
+        else
+        {
+            $charCount[ $value ] = 1;
+            $amountOfDifferentChars++;
+        }
+    }
 ?>
 
 <!doctype html>
@@ -20,11 +41,12 @@
         
             <h1>Deel 1</h1>
 
-            <p>
+            <pre>
             <?php
-                echo $tekst;
+                echo var_dump($charCount);
+                echo $amountOfDifferentChars;
             ?>
-            </p>
+            </pre>
 
         </section>
       
