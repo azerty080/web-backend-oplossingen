@@ -1,6 +1,44 @@
 <?php
 
-    
+    function berekenSom($getal1, $getal2)
+    {
+        $som = $getal1 + $getal2;
+
+        return $som;
+    }
+
+    function vermenigvuldig($getal1, $getal2)
+    {
+        $product = $getal1 * $getal2;
+
+        return $product;
+    }
+
+    function isEven($getal)
+    {
+        $isEven = False;
+
+        if ($getal % 2 == 0 )
+        {
+            $isEven = True;
+        }
+        else
+        {
+            $isEven = False;
+        }
+
+        return $isEven;
+    }
+
+    function lengthUpper($string)
+    {
+        $length = strlen($string);
+        $upper = strtoupper($string);
+
+        $lengthUpper = array($length, $upper);
+
+        return $lengthUpper;
+    }
 
 ?>
 
@@ -20,7 +58,11 @@
         
             <h1>Deel 1</h1>
 
-
+            <p><?php echo berekenSom(3, 5) ?></p>
+            <p><?php echo vermenigvuldig(3, 5) ?></p>
+            <p><?php echo (isEven(3) ? 'True' : 'False') ?></p>
+            <p><?php echo (isEven(4) ? 'True' : 'False') ?></p>
+            <p><?php echo var_dump(lengthUpper('TestWaarde')) ?></p>
 
         </section>
 
