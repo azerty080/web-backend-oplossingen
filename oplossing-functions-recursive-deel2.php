@@ -4,29 +4,26 @@
     $rente = 8;
     $jaren = 10;
 
-    function eindGeld($geld, $rente, $jaren)
+    function eindGeld($array)
     {
-        static $counter = 1;
-        static $historiek = array();
-
-        if ($counter <= $jaren)
+        if ($array['counter'] <= $array['jaren'])
         {
-            $renteBedrag = floor($geld * ($rente / 100));
-            $nieuwGeld = $geld + $renteBedrag;
+            $renteBedrag = floor($array['geld'] * ($array['rente'] / 100));
+            $array['geld'] += $renteBedrag;
 
-            $historiek[$counter] = 'Je hebt nu ' . $nieuwGeld . ' euro. De rente was ' . $renteBedrag . ' euro.';
+            $array['historiek'][$array['counter']] = 'Je hebt nu ' . $array['geld'] . ' euro. De rente was ' . $renteBedrag . ' euro.';
 
-            $counter++;
+            $array['counter']++;
 
-            return eindGeld($nieuwGeld, $rente, $jaren);
+            return eindGeld($array);
         }
         else
         {
-            return $historiek;
+            return $array;
         }
     }
 
-    $eindGeld = eindGeld($geld, $rente, $jaren);
+    $eindGeld = eindGeld( array('geld' => $geld, 'rente' => $rente, 'jaren' => $jaren, 'counter' => 1, 'historiek' =>  array()) );
 
 ?>
 
@@ -48,7 +45,7 @@
 
             <?php
 
-                foreach ($eindGeld as $value)
+                foreach ($eindGeld['historiek'] as $value)
                 {
                     echo '<p>';
                     echo $value;
