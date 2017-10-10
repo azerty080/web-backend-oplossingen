@@ -1,43 +1,45 @@
 <?php
 
-    function berekenSom($getal1, $getal2)
+    $testArray = array('boom' => 'eik', 'dier' => 'hond');
+
+    function drukArrayAf($array)
     {
-        $som = $getal1 + $getal2;
+        $tekstArray = array();
 
-        return $som;
-    }
+        echo '<h1>Opdracht functies</h1>';
 
-    function vermenigvuldig($getal1, $getal2)
-    {
-        $product = $getal1 * $getal2;
-
-        return $product;
-    }
-
-    function isEven($getal)
-    {
-        $isEven = False;
-
-        if ($getal % 2 == 0 )
+        foreach ($array as $key => $value)
         {
-            $isEven = True;
+            $tekstArray[] = '<p>testarray[' . $key . '] heeft waarde ' . $value . '</p>'; 
+        }
+        
+        return $tekstArray;
+    }
+
+
+    function validateHtmlTag($html)
+    {
+        $isValid = False;
+
+        $htmlStart = '<html>';
+        $htmlEnd = '</html>';
+
+        if (strpos($html, $htmlStart) === 0)
+        {
+            $htmlEndPosition = strlen($html) - strlen($htmlEnd);
+
+            if (stripos($html, $htmlEnd) === $htmlEndPosition)
+            {
+                $isValid = True;
+            }
+
         }
         else
         {
-            $isEven = False;
+            $isValid = False;
         }
 
-        return $isEven;
-    }
-
-    function lengthUpper($string)
-    {
-        $length = strlen($string);
-        $upper = strtoupper($string);
-
-        $lengthUpper = array($length, $upper);
-
-        return $lengthUpper;
+        return $isValid;
     }
 
 ?>
@@ -58,11 +60,11 @@
         
             <h1>Deel 2</h1>
 
-            <p><?php echo berekenSom(3, 5) ?></p>
-            <p><?php echo vermenigvuldig(3, 5) ?></p>
-            <p><?php echo (isEven(3) ? 'True' : 'False') ?></p>
-            <p><?php echo (isEven(4) ? 'True' : 'False') ?></p>
-            <p><?php echo var_dump(lengthUpper('TestWaarde')) ?></p>
+            <?php foreach(drukArrayAf($testArray) as $value) { echo $value; } ?>
+
+            <p><?php echo (validateHtmlTag('<html>blablabla</html>') ? 'True' : 'False') ?></p>
+            <p><?php echo (validateHtmlTag('<hlm>testtesttest<html>') ? 'True' : 'False') ?></p>
+
 
         </section>
 
