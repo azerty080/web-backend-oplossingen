@@ -1,49 +1,85 @@
 <?php
 
-    $md5HashKey = 'd1fa402db91a7a93c4f414b8278ce073';
+    $pigHealth = 5;
+    $maximumThrows = 8;
 
-    $parameter1 = '2';
-    $parameter2 = '8';
-    $parameter3 = 'a';
+    $result = array();
 
-    function findParameter1($hash, $parameter)
+    function calculateHit()
     {
-        $length = strlen($hash);
+        global $pigHealth;
 
-        $parameterAmount = substr_count($hash, $parameter);
+        $hitArray = array();
 
-        $parameterProcent = ($parameterAmount / $length) * 100;
+        $message = '';
+        $random = rand(1, 10);
 
-        return $parameterProcent;
+        if ($pigHealth < 0)
+        {
+            $pigHealth = 0;
+        }
+
+        if ($random <= 4)
+        {
+            $pigHealth--;
+
+            if ($pigHealth == 1)
+            {
+                $hitArray['message'] = 'Raak! Er is nog maar '. $pigHealth . ' varken over.';
+            }
+            else
+            {
+                $hitArray['message'] = 'Raak! Er zijn nog maar '. $pigHealth . ' varkens over.';
+            }
+        }
+        else
+        {
+            if ($pigHealth == 1)
+            {
+                $hitArray['message'] = 'Mis! Nog '. $pigHealth .' varken in het team.';
+            }
+            else
+            {
+                $hitArray['message'] = 'Mis! Nog '. $pigHealth .' varkens in het team.';
+            }
+
+        }
+
+        return $hitArray;
     }
 
 
-    function findParameter2($parameter)
+    function launchAngryBird()
     {
-        global $md5HashKey;
+        static $calledAmount = 0;
+        global $maximumThrows;
+        global $pigHealth;
 
-        $length = strlen($md5HashKey);
+        global $result;
 
-        $parameterAmount = substr_count($md5HashKey, $parameter);
+        if ($calledAmount < $maximumThrows)
+        {
+            $calledAmount++;
+            $hitOrMiss = calculateHit();
 
-        $parameterProcent = ($parameterAmount / $length) * 100;
+            $result[] = $hitOrMiss['message'];
 
-        return $parameterProcent;
+            launchAngryBird();
+        }
+        elseif ($calledAmount == $maximumThrows)
+        {
+            if ($pigHealth <= 0)
+            {
+                $result[] = 'Gewonnen!';
+            }
+            else
+            {
+                $result[] = 'Verloren!';
+            }
+        }
     }
 
-
-    function findParameter3($parameter)
-    {
-        $hash = $GLOBALS['md5HashKey'];
-
-        $length = strlen($hash);
-
-        $parameterAmount = substr_count($hash, $parameter);
-
-        $parameterProcent = ($parameterAmount / $length) * 100;
-
-        return $parameterProcent;
-    }
+    launchAngryBird();
 
 ?>
 
@@ -63,9 +99,16 @@
         
             <h1>Deel 2</h1>
 
-            <p>Functie 1: De needle <?php echo $parameter1 ?> komt <?php echo findParameter1($md5HashKey, $parameter1) ?>% voor in de hash key <?php echo $md5HashKey ?></p>
-            <p>Functie 2: De needle <?php echo $parameter2 ?> komt <?php echo findParameter2($parameter2) ?>% voor in de hash key <?php echo $md5HashKey ?></p>
-            <p>Functie 3: De needle <?php echo $parameter3 ?> komt <?php echo findParameter3( $parameter3) ?>% voor in de hash key <?php echo $md5HashKey ?></p>
+            <?php
+
+                foreach ($result as $value)
+                {
+                    echo '<p>';
+                    echo $value;
+                    echo '</p>';
+                }
+
+            ?>
 
         </section>
 
