@@ -1,6 +1,32 @@
 <?php
 
-    
+    $geld = 100000;
+    $rente = 8;
+    $jaren = 10;
+
+    function eindGeld($geld, $rente, $jaren)
+    {
+        static $counter = 1;
+        static $historiek = array();
+
+        if ($counter <= $jaren)
+        {
+            $renteBedrag = floor($geld * ($rente / 100));
+            $nieuwGeld = $geld + $renteBedrag;
+
+            $historiek[$counter] = 'Je hebt nu ' . $nieuwGeld . ' euro. De rente was ' . $renteBedrag . ' euro.';
+
+            $counter++;
+
+            return eindGeld($nieuwGeld, $rente, $jaren);
+        }
+        else
+        {
+            return $historiek;
+        }
+    }
+
+    $eindGeld = eindGeld($geld, $rente, $jaren);
 
 ?>
 
@@ -17,18 +43,19 @@
     <body class="web-backend-opdracht">
         
         <section class="body">
-
-            <style>
-                img
-                {
-                    display:block;
-                    padding:6px;
-                    margin:24px auto;
-                }
-            </style>
         
             <h1>Deel 1</h1>
 
+            <?php
+
+                foreach ($eindGeld as $value)
+                {
+                    echo '<p>';
+                    echo $value;
+                    echo '</p>';
+                }
+
+            ?>
 
         </section>
 
