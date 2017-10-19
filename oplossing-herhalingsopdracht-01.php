@@ -5,6 +5,10 @@
 	$iframeWidth = 300;
 	$bestanden = array();
 
+	$voorbeeldPath = 'D:\Documents\School\3de jaar\Back End\cursus\public\cursus\voorbeelden';
+	$opdrachtPath = 'D:\Documents\School\3de jaar\Back End\cursus\public\cursus\opdrachten';
+	$path = '';
+
 	if (isset($_GET['link']))
 	{
 		switch ($_GET['link']) {
@@ -15,11 +19,13 @@
 				break;
 
 			case 'voorbeelden':
-				$bestanden = scandir('D:\Documents\School\3de jaar\Back End\cursus\public\cursus\voorbeelden');
+				$bestanden = scandir($voorbeeldPath);
+				$path = 'http://web-backend.local/cursus/voorbeelden/';
 				break;
 
 			case 'opdrachten':
-				$bestanden = scandir('D:\Documents\School\3de jaar\Back End\cursus\public\cursus\opdrachten');
+				$bestanden = scandir($opdrachtPath);
+				$path = 'http://web-backend.local/cursus/opdrachten/';
 				break;
 		
 			default:
@@ -27,12 +33,12 @@
 		}
 	}
 
-	function showList($array)
+	function showList($array, $path)
 	{
 		echo '<ul>';
 		foreach ($array as $value)
 		{
-			echo '<li>' . $value . '</li>';
+			echo '<li><a href="' . $path . $value . '">' . $value . '</li>';
 		}
 		echo '</ul>';
 	}
@@ -121,9 +127,8 @@
 				}
 				else
 				{
-					showList($bestanden);
+					showList($bestanden, $path);
 				}
-
 			?>
 
 		</section>
