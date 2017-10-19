@@ -1,6 +1,8 @@
 <?php
 
-    
+    $timestamp = mktime(22, 35, 25, 1, 21, 1904);
+
+    $date = date('j F Y \, h:i:s a', $timestamp);
 
 ?>
 
@@ -16,7 +18,9 @@
         <section class="body">
             <h1>Deel 1</h1>
 
-
+            <ul>
+                <li><?php echo $date ?></li>
+            </ul>
 
         </section>
     </body>
