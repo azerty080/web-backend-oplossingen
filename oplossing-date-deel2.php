@@ -1,8 +1,10 @@
 <?php
+    
+    setlocale(LC_ALL, 'nld_nld');
 
     $timestamp = mktime(22, 35, 25, 1, 21, 1904);
 
-    $date = date('j F Y \, h:i:s a', $timestamp);
+    $date = strftime('%d %B %Y, %H:%M:%S', $timestamp);
 
 ?>
 
