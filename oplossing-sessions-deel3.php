@@ -14,44 +14,12 @@
     {
         $nickname = $_SESSION['nickname'];
     }
-    
-
-
-    if (isset($_GET['session']))
-    {
-        if($_GET['session'] === 'destroy')
-        {
-            session_destroy();
-            header('Location: oplossing-sessions-deel2.php');
-        }
-    }
-
-
-    
-    if (isset($_POST['straat']))
-    {
-        $_SESSION['straat'] = $_POST['straat'];
-    }
-
-    if (isset($_POST['nummer']))
-    {
-        $_SESSION['nummer'] = $_POST['nummer'];
-    }
-
-    if (isset($_POST['gemeente']))
-    {
-        $_SESSION['gemeente'] = $_POST['gemeente'];
-    }
-
-    if (isset($_POST['postcode']))
-    {
-        $_SESSION['postcode'] = $_POST['postcode'];
-    }
 
     $straat = isset($_SESSION['straat']) ? $_SESSION['straat'] : '';
     $nummer = isset($_SESSION['nummer']) ? $_SESSION['nummer'] : '';
     $gemeente = isset($_SESSION['gemeente']) ? $_SESSION['gemeente'] : '';
     $postcode = isset($_SESSION['postcode']) ? $_SESSION['postcode'] : '';
+
 
 ?>
 
@@ -73,27 +41,25 @@
             <form method="POST">
                 <ul>
                     <li>
-                        <label for="straat">straat</label>
-                        <input type="text" id="straat" name="straat" value="<?php echo $straat ?>">
+                        e-mail: <?php echo $email ?> | <a href="http://oplossingen.web-backend.local/oplossing-sessions-deel1.php?field=email">wijzig</a>
                     </li>
                     <li>
-                        <label for="nummer">nummer</label>
-                        <input type="number" id="nummer" name="nummer" value="<?php echo $nummer ?>">
+                        nickname: <?php echo $nickname ?> | <a href="http://oplossingen.web-backend.local/oplossing-sessions-deel1.php?field=nickname">wijzig</a>
                     </li>
                     <li>
-                        <label for="gemeente">gemeente</label>
-                        <input type="text" id="gemeente" name="gemeente" value="<?php echo $gemeente ?>">
+                        straat: <?php echo $straat ?> | <a href="http://oplossingen.web-backend.local/oplossing-sessions-deel2.php?field=straat">wijzig</a>
                     </li>
                     <li>
-                        <label for="postcode">postcode</label>
-                        <input type="text" id="postcode" name="postcode" value="<?php echo $postcode ?>">
+                        nummer: <?php echo $nummer ?> | <a href="http://oplossingen.web-backend.local/oplossing-sessions-deel2.php?field=nummer">wijzig</a>
+                    </li>
+                    <li>
+                        gemeente: <?php echo $gemeente ?> | <a href="http://oplossingen.web-backend.local/oplossing-sessions-deel2.php?field=gemeente">wijzig</a>
+                    </li>
+                    <li>
+                        postcode: <?php echo $postcode ?> | <a href="http://oplossingen.web-backend.local/oplossing-sessions-deel2.php?field=postcode">wijzig</a>
                     </li>
                 </ul>
-                <input type="submit" value="Volgende">
             </form>
-
-            <h1>Destroy session</h1>
-            <a href="http://oplossingen.web-backend.local/oplossing-sessions-deel2.php?session=destroy">Destroy session</a>
 
         </section>
         

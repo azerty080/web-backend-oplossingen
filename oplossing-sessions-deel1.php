@@ -13,6 +13,8 @@
         $_SESSION['nickname'] = $_POST['nickname'];
     }
 
+    $field = isset($_GET['field']) ? $_GET['field'] : '';
+
 ?>
 
 <!doctype html>
@@ -34,11 +36,11 @@
                 <ul>
                     <li>
                         <label for="email">e-mail</label>
-                        <input type="text" name="email">
+                        <input type="text" name="email"<?php echo ($field == 'email') ? 'autofocus' : '' ?>>
                     </li>
                     <li>
                         <label for="nickname">nickname</label>
-                        <input type="text" name="nickname">
+                        <input type="text" name="nickname"<?php echo ($field == 'nickname') ? 'autofocus' : '' ?>>
                     </li>
                 </ul>
                 <input type="submit" value="Volgende">

@@ -53,6 +53,8 @@
     $gemeente = isset($_SESSION['gemeente']) ? $_SESSION['gemeente'] : '';
     $postcode = isset($_SESSION['postcode']) ? $_SESSION['postcode'] : '';
 
+    $field = isset($_GET['field']) ? $_GET['field'] : '';
+
 ?>
 
 <!doctype html>
@@ -81,19 +83,19 @@
                 <ul>
                     <li>
                         <label for="straat">straat</label>
-                        <input type="text" id="straat" name="straat" value="<?php echo $straat ?>">
+                        <input type="text" id="straat" name="straat" value="<?php echo $straat ?>"<?php echo ($field == 'straat') ? 'autofocus' : '' ?>>
                     </li>
                     <li>
                         <label for="nummer">nummer</label>
-                        <input type="number" id="nummer" name="nummer" value="<?php echo $nummer ?>">
+                        <input type="number" id="nummer" name="nummer" value="<?php echo $nummer ?>"<?php echo ($field == 'nummer') ? 'autofocus' : '' ?>>
                     </li>
                     <li>
                         <label for="gemeente">gemeente</label>
-                        <input type="text" id="gemeente" name="gemeente" value="<?php echo $gemeente ?>">
+                        <input type="text" id="gemeente" name="gemeente" value="<?php echo $gemeente ?>"<?php echo ($field == 'gemeente') ? 'autofocus' : '' ?>>
                     </li>
                     <li>
                         <label for="postcode">postcode</label>
-                        <input type="text" id="postcode" name="postcode" value="<?php echo $postcode ?>">
+                        <input type="text" id="postcode" name="postcode" value="<?php echo $postcode ?>"<?php echo ($field == 'postcode') ? 'autofocus' : '' ?>>
                     </li>
                 </ul>
                 <input type="submit" value="Volgende">
