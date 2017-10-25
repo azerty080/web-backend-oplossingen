@@ -3,6 +3,21 @@
     $txtFile = file_get_contents('D:\Documents\School\3de jaar\Back End\oplossingen\cookies.txt');
 
     $txtArray = explode(',', $txtFile);
+    $gebruikersnaamArray = array();
+    $paswoordArray = array();
+    $arrayLength = count($txtArray);
+
+    for ($i=0; $i < $arrayLength; $i++)
+    { 
+        if ($i % 2 == 0)
+        {
+            $gebruikersnaamArray[] = $txtArray[$i];
+        }
+        else
+        {
+            $paswoordArray[] = $txtArray[$i];
+        }
+    }
 
     $gebruikersnaam = '';
     $paswoord = '';
@@ -31,23 +46,22 @@
     {
         if (isset($_POST['submit']))
         {
-            if ($txtArray[0] == $gebruikersnaam && $txtArray[1] == $paswoord)
-            {
-                $isAuthenticated = True;
-                $errorMessage = False;
+            for ($i=0; $i < ($arrayLength/2); $i++)
+            { 
+                if ($gebruikersnaamArray[$i] == $gebruikersnaam && $paswoordArray[$i] == $paswoord)
+                {
+                    $isAuthenticated = True;
+                    $errorMessage = False;
 
-                if ($remember == True)
-                {
-                    setcookie('authenticated', True, time() + 2592000);
+                    if ($remember == True)
+                    {
+                        setcookie('authenticated', True, time() + 2592000);
+                    }
+                    else
+                    {
+                        setcookie('authenticated', True);
+                    }
                 }
-                else
-                {
-                    setcookie('authenticated', True, 0);
-                }
-            }
-            else
-            {
-                $errorMessage = True;
             }
         }
     }
@@ -113,10 +127,8 @@
 
             <h1>Dashboard</h1>
                     
-            <p>U bent ingelogd.</p>
-            <p><a href="http://oplossingen.web-backend.local/oplossing-cookies-deel1.php?cookie=delete">Uitloggen</a></p>
-
-            
+            <p>Hallo <?php echo $gebruikersnaam ?>, fijn dat je er weer bij bent!</p>
+            <p><a href="http://oplossingen.web-backend.local/oplossing-cookies.php?cookie=delete">Uitloggen</a></p>
 
         <?php endif ?>
 
