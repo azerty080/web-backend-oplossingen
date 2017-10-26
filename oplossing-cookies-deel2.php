@@ -6,6 +6,7 @@
 
     $gebruikersnaam = '';
     $paswoord = '';
+    $remember = False;
 
     if (isset($_POST['gebruikersnaam']))
     {
@@ -17,8 +18,13 @@
         $paswoord = $_POST['paswoord'];
     }
 
+    if (isset($_POST['remember']))
+    {
+        $remember = True;
+    }
 
-    $isAuthenticated = False;
+
+
     $errorMessage = False;
 
     if (!isset($_COOKIE['authenticated']))
@@ -27,8 +33,17 @@
         {
             if ($txtArray[0] == $gebruikersnaam && $txtArray[1] == $paswoord)
             {
-                setcookie('authenticated', True, time() + 360);
                 $isAuthenticated = True;
+                $errorMessage = False;
+
+                if ($remember == True)
+                {
+                    setcookie('authenticated', True, time() + 2592000);
+                }
+                else
+                {
+                    setcookie('authenticated', True, 0);
+                }
             }
             else
             {
@@ -38,17 +53,7 @@
     }
     else
     {
-        $isAuthenticated = False;
         $errorMessage = False;
-    }
-
-
-    if (isset($_GET['cookie']))
-    {
-        if ($_GET['cookie'] == 'delete')
-        {
-            unset($_COOKIE['authenticated']);
-        }
     }
 
 ?>
@@ -67,42 +72,34 @@
     <section class="body">
 
         <h1>Deel 2</h1>
+   
+        <h1>Inloggen</h1>
 
-        <?php if (!$isAuthenticated): ?>
-                    
-            <h1>Inloggen</h1>
+        <?php if ($errorMessage): ?>
 
-            <?php if ($errorMessage): ?>
-
-                <div class="modal error">Gebruikersnaam en/of paswoord niet correct. Probeer opnieuw.</div>
-
-            <?php endif ?>
-
-            <form method="POST">
-                <ul>
-                    <li>
-                        <label for="gebruikersnaam">gebruikersnaam</label>
-                        <input type="text" id="gebruikersnaam" name="gebruikersnaam">
-                    </li>
-                    <li>
-                        <label for="paswoord">paswoord</label>
-                        <input type="text" id="paswoord" name="paswoord">
-                    </li>
-                </ul>
-                <input type="submit" name="submit">
-            </form>
-
-        <?php else: ?>
-
-            <h1>Dashboard</h1>
-                    
-            <p>U bent ingelogd.</p>
-            <p><a href="http://oplossingen.web-backend.local/oplossing-cookies-deel1.php?cookie=delete">Uitloggen</a></p>
-
-            
+            <div class="modal error">Gebruikersnaam en/of paswoord niet correct. Probeer opnieuw.</div>
 
         <?php endif ?>
 
+        <form method="POST">
+            <ul>
+                <li>
+                    <label for="gebruikersnaam">gebruikersnaam</label>
+                    <input type="text" id="gebruikersnaam" name="gebruikersnaam">
+                </li>
+                <li>
+                    <label for="paswoord">paswoord</label>
+                    <input type="text" id="paswoord" name="paswoord">
+                </li>
+                <li>
+                    <input type="checkbox" id="remember" name="remember">
+                    <label for="remember">Mij onthouden</label>
+                </li>
+            </ul>
+            <input type="submit" name="submit">
+        </form>
+
     </section>
+
     </body>
 </html>
