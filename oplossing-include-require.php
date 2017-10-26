@@ -1,116 +1,13 @@
 <?php
 
-    
+    $artikels = array(
+        array('title' => 'Titel van artikel 1', 'text' => 'Tekst van artikel 1', 'tags' => 'Tag 1 van artikel 1'),
+        array('title' => 'Titel van artikel 2', 'text' => 'Tekst van artikel 2', 'tags' => 'Tag 1 van artikel 2'),
+        array('title' => 'Titel van artikel 3', 'text' => 'Tekst van artikel 3', 'tags' => 'Tag 1 van artikel 3')
+    );
+
+    include 'view/header-partial.html';
+    include 'view/body-partial.html';
+    include 'view/footer-partial.html';
 
 ?>
-
-<!doctype html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Opdracht include/require</title>
-        <link rel="stylesheet" href="http://web-backend.local/css/global.css">
-        <link rel="stylesheet" href="http://web-backend.local/css/facade.css">
-        <link rel="stylesheet" href="http://web-backend.local/css/directory.css">
-    </head>
-    <body class="web-backend-opdracht">
-        
-        <section class="body">
-        <style>
-            .opdracht-include-require
-            {
-                padding:0px;
-                padding-top:57px;
-                font-size:14px;
-            }
-
-            .opdracht-include-require header
-            {
-                background-color:#2B3536;
-                color:#FFFFFF;
-                padding:12px 6px;
-            }
-
-            .opdracht-include-require header .logo
-            {
-                float:left;
-                font-size:18px;
-            }
-
-            .opdracht-include-require header .logo a
-            {
-                float:left;
-                font-size:18px;
-                text-decoration:none;
-            }
-            .opdracht-include-require header .logo span
-            {
-                font-weight:bold;
-            }
-
-            .opdracht-include-require header a
-            {
-               color:#FFFFFF; 
-            }
-            .opdracht-include-require nav
-            {
-                float:right;
-            }
-
-            .opdracht-include-require nav ul
-            {
-                list-style-type:none;
-                padding:0px;
-                margin-top:0;
-            }
-            
-             .opdracht-include-require nav li
-             {
-                display:inline;
-                padding:5px;
-                padding-left:18px;
-             }
-            
-            .opdracht-include-require .body
-            {
-                width:80%;
-                margin:0 auto;
-            }
-            
-            .opdracht-include-require .body article
-            {
-                width:26%;
-                margin-right:5%;
-                padding:0 2%;
-                float:left;
-                background-color:#EEEEEE;
-            }
-
-            .opdracht-include-require .body article:nth-child(3n+1)
-            {
-                margin-right:0;
-            }
-
-             .opdracht-include-require .body article h1:first-child
-            {
-                font-size:24px;
-                margin:12px 0;
-            }
-            
-            .opdracht-include-require footer
-            {
-                margin-top:32px;
-                padding:6px;
-                background-color:#5FC8D1;
-                color:#FFFFFF;
-                text-align:center;
-            }
-        </style>
-
-
-
-        </section>
-        
-    </body>
-</html>
