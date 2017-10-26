@@ -6,6 +6,7 @@
 
     $gebruikersnaam = '';
     $paswoord = '';
+    $remember = False;
 
     if (isset($_POST['gebruikersnaam']))
     {
@@ -15,6 +16,11 @@
     if (isset($_POST['paswoord']))
     {
         $paswoord = $_POST['paswoord'];
+    }
+
+    if (isset($_POST['remember']))
+    {
+        $remember = True;
     }
 
 
@@ -27,8 +33,17 @@
         {
             if ($txtArray[0] == $gebruikersnaam && $txtArray[1] == $paswoord)
             {
-                setcookie('authenticated', True, time() + 360);
                 $isAuthenticated = True;
+                $errorMessage = False;
+
+                if ($remember == True)
+                {
+                    setcookie('authenticated', True, time() + 2592000);
+                }
+                else
+                {
+                    setcookie('authenticated', True, 0);
+                }
             }
             else
             {
@@ -66,8 +81,6 @@
     
     <section class="body">
 
-        <h1>Deel 1</h1>
-
         <?php if (!$isAuthenticated): ?>
                     
             <h1>Inloggen</h1>
@@ -87,6 +100,10 @@
                     <li>
                         <label for="paswoord">paswoord</label>
                         <input type="text" id="paswoord" name="paswoord">
+                    </li>
+                    <li>
+                        <input type="checkbox" id="remember" name="remember">
+                        <label for="remember">Mij onthouden</label>
                     </li>
                 </ul>
                 <input type="submit" name="submit">
