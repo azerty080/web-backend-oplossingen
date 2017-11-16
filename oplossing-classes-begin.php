@@ -1,6 +1,20 @@
 <?php
 
-    
+    spl_autoload_register('myAutoloader');
+
+    function myAutoloader($className)
+    {
+        $path = 'D:\Documents\School\3de jaar\Back End\oplossingen\classes/';
+
+        include $path . $className . '.php';
+    }
+
+    require_once 'D:\Documents\School\3de jaar\Back End\oplossingen\classes\Percent.php';
+
+    $new = 150;
+    $unit = 100;
+
+    $percent = new Percent($new, $unit);
 
 ?>
 
@@ -18,8 +32,41 @@
         
         <section class="body">
 
+            <style>
+                .table-result table
+                {
+                    border:1px solid lightgrey;
+                    border-collapse:collapse;
+                    max-width:350px;
+                }
 
+                .table-result td
+                {
+                    border:1px solid lightgrey;
+                    padding:12px;
+                }
+            </style>
 
+            <table>
+                <caption><?php echo "Hoe staat " . $new . " in verhouding tot " . $unit . "?" ?></caption>
+                <thead></thead>
+                <tfoot></tfoot>
+                <tbody> 
+                    <tr>
+                        <td>Relatief</td>
+                        <td><?php echo $percent->relative ?></td>
+                    </tr>
+                    <tr>
+                        <td>Procentueel</td>
+                        <td><?php echo $percent->hundred . "%" ?></td>
+                    </tr>
+                    <tr>
+                        <td>Nominaal</td>
+                        <td><?php echo $percent->nominal ?></td>
+                    </tr>
+                </tbody>
+            </table>
+            
         </section>
 
     </body>
