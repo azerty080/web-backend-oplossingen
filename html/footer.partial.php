@@ -1,5 +1,6 @@
-    <footer>
-        dit is de footer
-    </footer>
-    </div>
-</div>
+	    <footer>
+	        dit is de footer
+	    </footer>
+	    <?php echo $jsLinks ?>
+    </body>
+</html>
