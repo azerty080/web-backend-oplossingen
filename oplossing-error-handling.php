@@ -10,24 +10,24 @@
         {
             if (isset($_POST['code']))
             {
-                if (strlen($_POST['code']) >= 8)
+                if (strlen($_POST['code']) == 8)
                 {
                     $isValid = TRUE;
                 }
                 else
                 {
-                    throw new Exception("VALIDATION-CODE-LENGTH");
+                    throw new Exception('VALIDATION-CODE-LENGTH');
                 }
             }
             else
             {
-                throw new Exception("SUBMIT-ERROR");
+                throw new Exception('SUBMIT-ERROR');
             }
         }
     }
     catch (Exception $e)
     {
-        $messageCode = $e->showMessage();
+        $messageCode = $e->getMessage();
 
         $message = array();
 
@@ -56,6 +56,7 @@
         logToFile($message);
     }
 
+    $message = getMessage();
 
 
     function logToFile($message)
@@ -64,10 +65,10 @@
         $ip = $_SERVER['REMOTE_ADDR'];
         $type = $message['type'];
         $text = $message['text'];
-
+        
         $errorMessage = $date . ' - ' . $ip . ' - type:[' . $type . '] - ' . $text . "\n\r";
 
-        file_put_contents('log.txt', $errorMessage);
+        file_put_contents('log.txt', $errorMessage, FILE_APPEND);
     }
 
     function createMessage($message)
@@ -75,7 +76,7 @@
         $_SESSION['message'] = $message;
     }
 
-    function showMessage()
+    function getMessage()
     {
         if (isset($_SESSION['message']))
         {
@@ -89,10 +90,6 @@
             return FALSE;
         }
     }
-
-
-
-    $message = showMessage();
 
 ?>
 
@@ -109,8 +106,8 @@
     <body class="web-backend-opdracht">
         
         <section class="body">
-        
-			<h1>Deel 1</h1>
+
+            <h1>Geef uw kortingscode op</h1>
 
             <?php
 
@@ -123,15 +120,14 @@
 
             <?php if(!$isValid): ?>
 
-                <h1>Geef uw kortingscode op</h1>
-                <form action="#" method="POST">
+                <form action="oplossing-error-handling.php" method="POST">
                     <ul>
                         <li>
                             <label for="code">Kortingscode</label>
                             <input type="text" id="code" name="code">
                         </li>
                     </ul>
-                    <input type="submit">
+                    <input type="submit" name="submit">
                 </form>
 
             <?php else: ?>
