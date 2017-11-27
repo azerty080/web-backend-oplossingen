@@ -1,13 +1,13 @@
 <?php
 
 	$message = '';
-	$counter = 1;
+    $counter = 1;
 
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
-		$queryString = 'SELECT * FROM bieren INNER JOIN brouwers ON bieren.brouwernr = brouwers.brouwernr WHERE bieren.naam LIKE "du%" AND brouwers.brnaam LIKE "%a%"';
+		$queryString = 'SELECT brouwernr, brnaam FROM brouwers';
 
 		$statement = $db->prepare($queryString);
 
@@ -15,22 +15,40 @@
 
 
 
-		$bieren = array();
+		$brouwers = array();
 
 		while ($row = $statement->fetch(PDO::FETCH_ASSOC))
 		{
-			$bieren[] = $row;
+			$brouwers[] = $row;
 		}
 
 		// Een query uitvoeren
 		$statement->execute();
 
-		$columnNames[] = '#';
 
-		foreach ($bieren[0] as $key => $value)
-		{
-			$columnNames[] = $key;
-		}
+
+        $bieren = array();
+
+        if (isset($_GET['brouwernr']))
+        {
+            $brouwernr = $_GET['brouwernr'];
+
+            $queryStringBieren = 'SELECT naam FROM bieren INNER JOIN brouwers ON bieren.brouwernr = brouwers.brouwernr WHERE brouwers.brouwernr = :brouwernr';
+
+            $statementBieren = $db->prepare($queryStringBieren);
+            
+            $statementBieren->bindValue(':brouwernr', $brouwernr);
+
+
+            $statementBieren->execute();
+
+
+            while ($row = $statementBieren->fetch(PDO::FETCH_ASSOC))
+            {
+                $bieren[] = $row;
+            }
+        }
+
 
 		$message = 'Query succesvol uitgevoerd';
 	}
@@ -94,22 +112,47 @@
 
             <p><?php echo $message ?></p>
 
+            <form action="oplossing-crud-query-deel2.php" method="GET">
+                <select name="brouwernr">
+                    <?php
+
+                        foreach ($brouwers as $brouwer)
+                        {
+                            if (isset($_GET['brouwernr']))
+                            {
+                                $brouwernr = $_GET['brouwernr'];
+
+                                if ($brouwernr == $brouwer['brouwernr'])
+                                {
+                                    echo '<option value="' . $brouwer['brouwernr'] . '" selected>' . $brouwer['brnaam'] . '</option>';
+                                }
+                                else
+                                {
+                                    echo '<option value="' . $brouwer['brouwernr'] . '" >' . $brouwer['brnaam'] . '</option>';
+                                }
+                            }
+                            else
+                            {
+                                echo '<option value="' . $brouwer['brouwernr'] . '" >' . $brouwer['brnaam'] . '</option>';
+                            }
+                        }
+
+                    ?>
+                </select>
+
+                <input type="submit" name="submit" value="Geef mij alle bieren van deze brouwerij">
+            </form>
+
             <table>
             	<thead>
             		<tr>
-            			<?php 
-
-            				foreach ($columnNames as $value)
-            				{
-            					echo '<th>' . $value . '</th>';
-            				}
-
-            			?>
+            			<th>Aantal</th>
+                        <th>Naam</th>
             		</tr>
             	</thead>
 
             	<tbody>
-        			<?php 
+        			<?php
 
         				foreach ($bieren as $key => $bier)
         				{
@@ -131,7 +174,7 @@
 
         					echo '</tr>';
 
-        					$counter++;
+                            $counter++;
         				}
 
         			?>
