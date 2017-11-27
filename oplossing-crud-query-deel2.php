@@ -165,11 +165,11 @@
         						echo '<tr class="odd">';
         					}
 
-        					echo '<th>' . $counter . '</th>';
+        					echo '<td>' . $counter . '</td>';
         					
         					foreach ($bier as $value)
         					{
-        						echo '<th>' . $value . '</th>';
+        						echo '<td>' . $value . '</td>';
         					}
 
         					echo '</tr>';
