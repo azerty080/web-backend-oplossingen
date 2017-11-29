@@ -3,17 +3,26 @@
 	$message = '';
 	$counter = 1;
 
+	$deleteRow = FALSE;
+	$idToDelete = 0;
+
 	try
 	{
 		$db = new PDO('mysql:host=localhost;dbname=bieren', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
 		if (isset($_POST['delete']))
 		{
+			$deleteRow = TRUE;
+			$idToDelete = $_POST['delete'];
+		}
+
+		if (isset($_POST['confirm']))
+		{
 			$queryStringDelete = 'DELETE FROM brouwers WHERE brouwernr = :brouwernr';
 
 			$statementDelete = $db->prepare($queryStringDelete);
 
-			$statementDelete->bindValue(':brouwernr', $_POST['delete']);
+			$statementDelete->bindValue(':brouwernr', $_POST['confirm']);
 
 			if ($statementDelete->execute())
 			{
@@ -130,6 +139,14 @@
             <h1>Overzicht van de brouwers</h1>
 
             <p><?php echo $message ?></p>
+
+            <?php if ( $deleteRow ): ?>
+				Bent u zeker dat u deze datarij wilt verwijderen?
+				<form action="oplossing-crud-delete.php" method="POST">
+					<button type="submit" name="confirm" value="<?php $idToDelete ?>">Ja</button>
+					<button type="submit">Nee</button>
+				</form>
+			<?php endif ?>
 
             <form action="oplossing-crud-delete.php" method="POST">
 	            <table>
