@@ -1,6 +1,13 @@
 <?php
+    
+    session_start();
 
-	
+	$message = '';
+
+    if (isset($_SESSION['notification']['logout']))
+    {
+        $message = $_SESSION['notification']['logout'];
+    }
 
 ?>
 
@@ -18,7 +25,25 @@
         
         <section class="body">
 
-        	
+        	<p><?php echo $message ?></p>
+
+            <h1>Inloggen</h1>
+            <form action="login-process.php" method="POST">
+                <ul>
+                    <li>
+                        <label for="email">e-mail</label>
+                        <input type="text" name="email" id="email">
+                    </li>
+                    <li>
+                        <label for="password">paswoord</label>
+                        <input type="password" name="password" id="password">
+                    </li>
+                </ul>
+                <input type="submit" name="submit" value="Inloggen">
+            </form>
+
+
+            <p>Nog geen account? Maak er dan eentje aan op de <a href="http://oplossingen.web-backend.local/oplossing-security-login/registratie-form.php">registratiepagina</a>.</p>
 
         </section>
 
