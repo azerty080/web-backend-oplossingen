@@ -10,7 +10,7 @@
         $enteredPassword = $_POST['password'];
 
 
-        unset($_SESSION['notification']['logout']);
+        unset($_SESSION['notification']['message']);
 
 
         try
@@ -36,10 +36,6 @@
 
             if (!empty($userData))
             {
-                // $message = 'Het emailadres ' . $email . ' is al in gebruik, kies een ander';
-
-                // header('Location: registratie-form.php');
-
                 $salt = $userData[0]['salt'];
                 $hashed_password = $userData[0]['hashed_password'];
 

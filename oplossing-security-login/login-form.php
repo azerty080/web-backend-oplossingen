@@ -4,9 +4,9 @@
 
 	$message = '';
 
-    if (isset($_SESSION['notification']['logout']))
+    if (isset($_SESSION['notification']['message']))
     {
-        $message = $_SESSION['notification']['logout'];
+        $message = $_SESSION['notification']['message'];
     }
 
 ?>

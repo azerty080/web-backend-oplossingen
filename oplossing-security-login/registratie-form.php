@@ -14,12 +14,19 @@
         $password = $_SESSION['registration']['password'];
     }
 
-    if (isset($_SESSION['notification']))
+    if (isset($_SESSION['notification']['email']))
     {
-        foreach ($_SESSION['notification'] as $value)
-        {
-            $message[] = $value;
-        }
+        $message[] = $_SESSION['notification']['email'];
+    }
+
+    if (isset($_SESSION['notification']['password']))
+    {
+        $message[] = $_SESSION['notification']['password'];
+    }
+
+    if (isset($_SESSION['notification']['message']))
+    {
+        $message[] = $_SESSION['notification']['message'];
     }
 
 ?>
