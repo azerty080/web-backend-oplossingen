@@ -15,7 +15,7 @@
 
         try
         {
-            $db = new PDO('mysql:host=localhost;dbname=opdracht_crud_cms', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $db = new PDO('mysql:host=localhost;dbname=opdracht_security_login', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
             $queryString = 'SELECT * FROM users WHERE email = :email';
 
@@ -28,7 +28,7 @@
             
             $userData = array();
 
-            while ($row = $statementUserData->fetch(PDO::FETCH_ASSOC))
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC))
             {
                 $userData[] = $row;
             }
@@ -54,12 +54,16 @@
                 else
                 {
                     $message = 'Passwoord is incorrect';
+
+                    header('Location: login-form.php');
                 }
 
             }
             else
             {
                 $message = 'Email is not niet in gebruik';
+
+                header('Location: login-form.php');
             }
 
         }

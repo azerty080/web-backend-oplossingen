@@ -24,11 +24,6 @@
         $message[] = $_SESSION['notification']['password'];
     }
 
-    if (isset($_SESSION['notification']['message']))
-    {
-        $message[] = $_SESSION['notification']['message'];
-    }
-
 ?>
 
 <!doctype html>
