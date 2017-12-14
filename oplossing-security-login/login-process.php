@@ -28,7 +28,7 @@
             
             $userData = array();
 
-            while ($row = $statementUserData->fetch(PDO::FETCH_ASSOC))
+            while ($row = $statement->fetch(PDO::FETCH_ASSOC))
             {
                 $userData[] = $row;
             }
@@ -54,12 +54,16 @@
                 else
                 {
                     $message = 'Passwoord is incorrect';
+
+                    header('Location: login-form.php');
                 }
 
             }
             else
             {
                 $message = 'Email is not niet in gebruik';
+
+                header('Location: login-form.php');
             }
 
         }
