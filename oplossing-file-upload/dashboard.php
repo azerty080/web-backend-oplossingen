@@ -82,12 +82,18 @@
 
             <?php if ($isValid): ?>
 
+                <p><a href="http://oplossingen.web-backend.local/oplossing-file-upload/dashboard.php">Terug naar dashboard</a> | Ingelogd als <?php echo $email ?> | <a href="http://oplossingen.web-backend.local/oplossing-file-upload/logout.php">uitloggen</a></p>   
+
                 <h1>Dashboard</h1>
-                <a href="http://oplossingen.web-backend.local/oplossing-file_upload/logout.php">uitloggen</a>
+                
+                <ul>
+                    <li><a href="">Artikels</a></li>
+                    <li><a href="http://oplossingen.web-backend.local/oplossing-file-upload/gegevens-wijzigen-form.php">Gegevens wijzigen</a></li>
+                </ul>
 
             <?php endif ?>
 
-
+            
             <?php if ($message != '') { echo '<p>' . $message . '</p>';} ?>
 
 

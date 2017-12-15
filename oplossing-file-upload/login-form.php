@@ -43,7 +43,7 @@
             </form>
 
 
-            <p>Nog geen account? Maak er dan eentje aan op de <a href="http://oplossingen.web-backend.local/oplossing-file_upload/registratie-form.php">registratiepagina</a>.</p>
+            <p>Nog geen account? Maak er dan eentje aan op de <a href="http://oplossingen.web-backend.local/oplossing-file-upload/registratie-form.php">registratiepagina</a>.</p>
 
         </section>
 
