@@ -49,15 +49,15 @@
                 <ul>
                     <li>
                         <label for="email">Emailadres</label>
-                        <input type="text" id="email" name="email" value="<?php echo (isset($email)) ? $email : '' ?>">
+                        <input type="text" name="email" value="<?php echo (isset($email)) ? $email : '' ?>">
                     </li>
                     <li>
                         <label for="message">Bericht</label>
-                        <textarea id="message" name="message" cols="30" rows="10"><?php echo (isset($formMessage)) ? $formMessage : '' ?></textarea>
+                        <textarea name="message" cols="30" rows="10"><?php echo (isset($formMessage)) ? $formMessage : '' ?></textarea>
                     </li>
                     <li>
                         <label for="send-copy">Stuur kopie naar mezelf</label>
-                        <input type="checkbox" id="send-copy" name="send-copy" <?php  echo (isset($copy)) ? 'checked' : ''?>>
+                        <input type="checkbox" name="send-copy" <?php  echo (isset($copy)) ? 'checked' : ''?>>
                     </li>
                 </ul>
                 
