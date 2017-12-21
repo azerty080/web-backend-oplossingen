@@ -1,6 +1,21 @@
 <?php
 
-    
+    session_start();
+
+
+    if (isset($_SESSION['enteredData']))
+    {
+        $email = $_SESSION['enteredData']['email'];
+        $formMessage = $_SESSION['enteredData']['formMessage'];
+        $copy = $_SESSION['enteredData']['copy'];
+    }
+
+    if (isset($_SESSION['message']))
+    {
+        $message = $_SESSION['message'];
+
+        unset($_SESSION['message']);
+    }
 
 ?>
 
@@ -18,7 +33,36 @@
         
         <section class="body">
 
+            <h1>Contacteer ons</h1>
 
+            <?php
+
+                if (isset($message))
+                {
+                    echo '<p>' . $message . '</p>';
+                }
+
+            ?>
+
+            <form action="contact.php" method="POST">
+                
+                <ul>
+                    <li>
+                        <label for="email">Emailadres</label>
+                        <input type="text" id="email" name="email" value="<?php echo (isset($email)) ? $email : '' ?>">
+                    </li>
+                    <li>
+                        <label for="message">Bericht</label>
+                        <textarea id="message" name="message" cols="30" rows="10"><?php echo (isset($formMessage)) ? $formMessage : '' ?></textarea>
+                    </li>
+                    <li>
+                        <label for="send-copy">Stuur kopie naar mezelf</label>
+                        <input type="checkbox" id="send-copy" name="send-copy" <?php  echo (isset($copy)) ? 'checked' : ''?>>
+                    </li>
+                </ul>
+                
+                <input type="submit" name="submit">
+            </form>
 
         </section>
 
