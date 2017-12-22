@@ -24,7 +24,7 @@
 
         try
         {
-            $db = new PDO('mysql:host=localhost;dbname=opdracht_mail', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+            $db = new PDO('mysql:host=localhost;dbname=opdracht_ajax', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
 
             $queryString = 'INSERT INTO contact_messages (email, message, time_sent) VALUES ("' . $email . '", "' . $formMessage . '", NOW())';
 
