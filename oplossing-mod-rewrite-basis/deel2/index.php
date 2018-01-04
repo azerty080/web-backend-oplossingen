@@ -12,9 +12,11 @@
         
         <section class="body">
 
-            <h1></h1>
+            <h1>Index</h1>
 
-        </section>    
+            <?php var_dump( $_GET ) ?>
+
+        </section>
         
     </body>
 </html>

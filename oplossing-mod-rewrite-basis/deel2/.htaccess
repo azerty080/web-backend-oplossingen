@@ -1,2 +1,2 @@
 RewriteEngine On
-RewriteRule ^$ 
+RewriteRule ^rasmus$ index.php?user=rasmus
