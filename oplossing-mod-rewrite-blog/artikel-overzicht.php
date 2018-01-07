@@ -1,14 +1,91 @@
 <?php
     
     session_start();
-/*
+
+
 
     $message = '';
 
-    $titel = '';
-    $artikel = '';
-    $kernwoorden = '';
-    $datum = '';
+    $allArticleData = array();
+    $searchData = array();
+
+    $articlesToShow = array();
+
+    $searchItem = '';
+    $searchType = '';
+
+
+    try
+    {
+        $db = new PDO('mysql:host=localhost;dbname=opdracht_mod_rewrite_blog', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+        $queryString = 'SELECT * FROM artikels';
+
+        $statement = $db->prepare($queryString);
+
+        $statement->execute();
+
+
+        while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+        {
+            $allArticleData[] = $row;
+        }
+    }
+    catch (PDOException $e)
+    {
+        $message = 'Er ging iets mis ' . $e->getMessage();
+    }
+
+
+
+
+    if (isset($_SESSION['data']))
+    {
+        $searchData = $_SESSION['data'];
+
+        foreach ($searchData as $article)
+        {
+            try
+            {
+                $db = new PDO('mysql:host=localhost;dbname=opdracht_mod_rewrite_blog', 'root', '', array (PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION));
+
+                $queryString = "SELECT * FROM artikels WHERE titel LIKE '%" . $article['Titel'] . "%'";
+
+                $statement = $db->prepare($queryString);
+
+                $statement->execute();
+
+
+                while ($row = $statement->fetch(PDO::FETCH_ASSOC))
+                {
+                    $articlesToShow[] = $row;
+                }
+            }
+            catch (PDOException $e)
+            {
+                $message = 'Er ging iets mis ' . $e->getMessage();
+            }
+        }
+
+        unset($_SESSION['data']);
+    }
+
+
+
+
+    if (isset($_SESSION['searchItem']))
+    {
+        $searchItem = $_SESSION['searchItem'];
+        unset($_SESSION['searchItem']);
+    }
+
+    if (isset($_SESSION['searchType']))
+    {
+         $searchType = $_SESSION['searchType'];
+         unset($_SESSION['searchType']);
+    }
+
+
 
 
 
@@ -17,20 +94,11 @@
         $message = $_SESSION['notification'];
         unset($_SESSION['notification']);
     }
-
-
-    if (isset($_SESSION['data']))
-    {
-        $titel = $_SESSION['data']['titel'];
-        $artikel = $_SESSION['data']['artikel'];
-        $kernwoorden = $_SESSION['data']['kernwoorden'];
-        $datum = $_SESSION['data']['datum'];
-    }
-
-*/
     
 
 ?>
+
+
 
 <!doctype html>
 <html>
@@ -46,15 +114,15 @@
         
         <section class="body">
 
-             <form class="query-content">
+            <form action="http://oplossingen.web-backend.local/oplossing-mod-rewrite-blog/artikels/zoeken" method="GET">
                 <label for="query-content">Zoeken in artikels:</label>
-                <input type="text" name="query-content" id="query-content">
+                <input type="text" name="query-content">
                 <input type="submit" value="Zoeken">
             </form>
             
-            <form class="query-date">
+            <form action="http://oplossingen.web-backend.local/oplossing-mod-rewrite-blog/artikels/zoeken" method="GET">
                 <label for="query-date">Zoeken op datum:</label>
-                <select name="query-date" id="query-date">
+                <select name="query-date">
                     
                     <option value="2010">2010</option>
                     <option value="2011">2011</option>
@@ -70,27 +138,53 @@
                 <input type="submit" value="Zoeken">
             </form>
 
+
+            <?php
+
+                if ($searchType == 'word')
+                {
+                    echo '<h1>Artikels die het woord "' . $searchItem . '" bevatten</h1>';
+                }
+                elseif ($searchType == 'date')
+                {
+                    echo '<h1>Artikels van het jaar "' . $searchItem . '"</h1>';
+                }
+
+
+
+                foreach ($articlesToShow as $article)
+                {
+                    echo '<article>';
+                    echo '<h2>' . $article['Titel'] . ' | ' . $article['Datum'] . '</h2>';
+                    echo '<p>' . $article['Artikel'] . '</p>';
+                    echo '<p>Kernwoorden: ' . $article['Kernwoorden'] . '</p>';
+                    echo '</article>';
+                }
+
+            ?>
+            
+
+
+
             <h1>Artikels overzicht</h1>                         
 
-            <a href="">Artikel toevoegen</a>
+            <a href="http://oplossingen.web-backend.local/oplossing-mod-rewrite-blog/artikels/toevoegen">Artikel toevoegen</a>
 
-            <article>
-                <h2>Kantar: Apple On Track For 'Record Quarter' As iPhone 6 Sales Bump Up Its Market Share Vs. Android | 2014-12-04</h2>
-                <p>Apple has been seeing its smartphone market share erode over the last several years as its simple-and-small line up of iPhones competed against model after model of low-priced, big-screened, fancy-featured Android-based handsets. But it looks like its latest iPhone 6 models — with their larger faces, 4G compatibility and Apple Pay support — may be helping it turn the tide a bit.</p>
-                <p>Keywords: Computers, Consumer Electronics, Hardware + Software</p>
-            </article>
+            <?php echo $message ?>
 
-            <article>
-                <h2>Gangnam Style Has Been Viewed So Many Times It Broke YouTube's Code | 2014-12-04</h2>
-                <p>Whoops! Just a fun bit of trivia for the coders out there: PSY's Gangnam Style has been viewed so many times that it broke YouTube's view counter, making it the very first video to break the reaches of a 32-bit integer.</p>
-                <p>Keywords: Popular, YouTube, Psy, Gangnam Style</p>
-            </article>
 
-            <article>
-                <h2>Stripe Raises Another $70 Million, Doubling Its Valuation To $3.5 Billion | 2014-12-04</h2>
-                <p>Ultra-hot payments startup Stripe has brought on $70 million in new funding that will double its valuation less than a year after its last raise. The round, which was first reported by the Financial Times, brings the total amount Stripe has raised to more than $200 million.</p>
-                <p>Keywords: Payments, Software, Credit Cards</p>
-            </article>
+            <?php
+
+                foreach ($allArticleData as $article)
+                {
+                    echo '<article>';
+                    echo '<h2>' . $article['Titel'] . ' | ' . $article['Datum'] . '</h2>';
+                    echo '<p>' . $article['Artikel'] . '</p>';
+                    echo '<p>Kernwoorden: ' . $article['Kernwoorden'] . '</p>';
+                    echo '</article>';
+                }
+
+            ?>
 
         </section>
    
